@@ -14,11 +14,11 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
       <div className={`
         md:w-5/12 
         ${isEven ? 'md:ml-auto md:pr-8 md:text-right' : 'md:mr-auto md:pl-8'} 
-        p-4 bg-white rounded-lg shadow-md
+        p-4 bg-card text-card-foreground rounded-lg shadow-md
       `}>
         <h3 className="text-xl font-heading font-bold text-primary mb-2">{title}</h3>
         <h4 className="text-lg font-medium text-secondary mb-4">{company} - {period}</h4>
-        <p className="mb-4">{description}</p>
+        <p className="mb-4 text-foreground/80">{description}</p>
         <div className={`flex flex-wrap gap-2 ${isEven ? 'md:justify-end' : ''}`}>
           {skills.map((skill, index) => (
             <span 

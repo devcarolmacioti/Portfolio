@@ -2,7 +2,16 @@ import { useState, useEffect } from "react";
 import IntroSection from "@/components/home/IntroSection";
 import Experience from "./Experience";
 import Contact from "./Contact";
-import { CheckCircle2, Code } from "lucide-react";
+import { 
+  CheckCircle2, 
+  Code,
+  FileJson,
+  Globe,
+  FileType,
+  Paintbrush,
+  PanelLeft,
+  Layout
+} from "lucide-react";
 
 // Tipo para idiomas
 type Language = "pt" | "en" | "es";
@@ -246,15 +255,15 @@ const TechnologiesSection = () => {
     }
   }, []);
 
-  // Dados de tecnologias
+  // Dados de tecnologias com ícones
   const technologiesData = [
-    { name: "HTML5", icon: <Code /> },
-    { name: "CSS3", icon: <Code /> },
-    { name: "JAVASCRIPT", icon: <Code /> },
-    { name: "TYPESCRIPT", icon: <Code /> },
-    { name: "REACT", icon: <Code /> },
-    { name: "ANGULAR", icon: <Code /> },
-    { name: "UI DESIGN", icon: <Code /> }
+    { name: "HTML5", icon: <Code size={32} /> },
+    { name: "CSS3", icon: <Code size={32} /> },
+    { name: "JAVASCRIPT", icon: <Code size={32} /> },
+    { name: "TYPESCRIPT", icon: <Code size={32} /> },
+    { name: "REACT", icon: <Code size={32} /> },
+    { name: "ANGULAR", icon: <Code size={32} /> },
+    { name: "UI DESIGN", icon: <Code size={32} /> }
   ];
 
   // Textos da página em diferentes idiomas

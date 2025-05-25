@@ -64,8 +64,9 @@ const Header = () => {
   const changeLanguage = (lang: Language) => {
     setLanguage(lang);
     setIsLangMenuOpen(false);
-    // Aqui você pode implementar a lógica para mudar o idioma da aplicação
+    // Salvar o idioma e forçar atualização da página para aplicar as mudanças em todos os componentes
     window.localStorage.setItem('language', lang);
+    window.location.reload(); // Forçar recarregar a página para atualizar todos os componentes
   };
 
   // Traduções dos links de navegação

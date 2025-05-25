@@ -178,43 +178,8 @@ const ContactForm = () => {
 
   return (
     <div className="bg-card text-card-foreground p-8 rounded-lg shadow-md">
-      <div className="flex justify-between items-center mb-6">
+      <div className="mb-6">
         <h3 className="text-xl font-semibold text-foreground">{currentText.name}</h3>
-        
-        {/* Language Selector */}
-        <div className="relative">
-          <button
-            onClick={toggleLangMenu}
-            className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors flex items-center"
-            aria-label="Mudar idioma do formulário"
-          >
-            <Globe size={18} />
-            <span className="ml-1">{language.toUpperCase()}</span>
-          </button>
-          
-          {isLangMenuOpen && (
-            <div className="absolute top-full right-0 mt-1 bg-card rounded-md shadow-lg py-2 min-w-24 z-50">
-              <button
-                className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'pt' ? 'bg-primary/20 text-primary' : ''}`}
-                onClick={() => changeLanguage('pt')}
-              >
-                Português
-              </button>
-              <button
-                className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'en' ? 'bg-primary/20 text-primary' : ''}`}
-                onClick={() => changeLanguage('en')}
-              >
-                English
-              </button>
-              <button
-                className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'es' ? 'bg-primary/20 text-primary' : ''}`}
-                onClick={() => changeLanguage('es')}
-              >
-                Español
-              </button>
-            </div>
-          )}
-        </div>
       </div>
       
       <form onSubmit={handleSubmit}>
