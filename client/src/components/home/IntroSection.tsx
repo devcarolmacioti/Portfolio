@@ -19,7 +19,7 @@ const IntroSection = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="md:w-1/2 mb-10 md:mb-0">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-foreground">
               Olá, eu sou <span className="text-primary">Carolina Farias Macioti</span>
             </h1>
             <h2 className="text-2xl md:text-3xl font-heading font-medium text-secondary mb-6">

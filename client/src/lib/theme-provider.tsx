@@ -9,7 +9,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-interface ThemeProviderProps {
+export interface ThemeProviderProps {
   children: ReactNode;
   defaultTheme?: Theme;
 }

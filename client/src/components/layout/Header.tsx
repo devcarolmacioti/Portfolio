@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { useTheme } from "@/lib/theme-provider";
-import { SunIcon, MoonIcon } from "lucide-react";
+import { SunIcon, MoonIcon, Globe } from "lucide-react";
+
+// Tipos para o seletor de idioma
+type Language = "pt" | "en" | "es";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [language, setLanguage] = useState<Language>("pt");
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [location] = useLocation();
   const { theme, toggleTheme } = useTheme();
 
@@ -50,6 +55,49 @@ const Header = () => {
     }
   };
 
+  // Language menu toggle
+  const toggleLangMenu = () => {
+    setIsLangMenuOpen(!isLangMenuOpen);
+  };
+
+  // Change language
+  const changeLanguage = (lang: Language) => {
+    setLanguage(lang);
+    setIsLangMenuOpen(false);
+    // Aqui você pode implementar a lógica para mudar o idioma da aplicação
+    window.localStorage.setItem('language', lang);
+  };
+
+  // Traduções dos links de navegação
+  const navLinks = {
+    pt: {
+      home: "Início",
+      experience: "Experiência",
+      education: "Formação",
+      skills: "Habilidades",
+      technologies: "Tecnologias",
+      contact: "Contato"
+    },
+    en: {
+      home: "Home",
+      experience: "Experience",
+      education: "Education",
+      skills: "Skills",
+      technologies: "Technologies",
+      contact: "Contact"
+    },
+    es: {
+      home: "Inicio",
+      experience: "Experiencia",
+      education: "Formación",
+      skills: "Habilidades",
+      technologies: "Tecnologías",
+      contact: "Contacto"
+    }
+  };
+
+  const currentText = navLinks[language];
+
   return (
     <header className="fixed top-0 left-0 right-0 bg-background dark:bg-background shadow-md z-50">
       <div className="container mx-auto px-4">
@@ -59,28 +107,84 @@ const Header = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-6">
             <a 
               href="#home"
               className={`nav-link font-medium ${activeSection === 'home' ? 'active' : ''}`}
               onClick={(e) => scrollToSection('home', e)}
             >
-              Início
+              {currentText.home}
             </a>
             <a 
               href="#experiencia"
               className={`nav-link font-medium ${activeSection === 'experiencia' ? 'active' : ''}`}
               onClick={(e) => scrollToSection('experiencia', e)}
             >
-              Experiência
+              {currentText.experience}
+            </a>
+            <a 
+              href="#formacao"
+              className={`nav-link font-medium ${activeSection === 'formacao' ? 'active' : ''}`}
+              onClick={(e) => scrollToSection('formacao', e)}
+            >
+              {currentText.education}
+            </a>
+            <a 
+              href="#habilidades"
+              className={`nav-link font-medium ${activeSection === 'habilidades' ? 'active' : ''}`}
+              onClick={(e) => scrollToSection('habilidades', e)}
+            >
+              {currentText.skills}
+            </a>
+            <a 
+              href="#tecnologias"
+              className={`nav-link font-medium ${activeSection === 'tecnologias' ? 'active' : ''}`}
+              onClick={(e) => scrollToSection('tecnologias', e)}
+            >
+              {currentText.technologies}
             </a>
             <a 
               href="#contato"
               className={`nav-link font-medium ${activeSection === 'contato' ? 'active' : ''}`}
               onClick={(e) => scrollToSection('contato', e)}
             >
-              Contato
+              {currentText.contact}
             </a>
+            
+            {/* Language Selector */}
+            <div className="relative">
+              <button
+                onClick={toggleLangMenu}
+                className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors flex items-center"
+                aria-label="Mudar idioma"
+              >
+                <Globe size={18} />
+                <span className="ml-1">{language.toUpperCase()}</span>
+              </button>
+              
+              {isLangMenuOpen && (
+                <div className="absolute top-full right-0 mt-1 bg-card rounded-md shadow-lg py-2 min-w-24 z-50">
+                  <button
+                    className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'pt' ? 'bg-primary/20 text-primary' : ''}`}
+                    onClick={() => changeLanguage('pt')}
+                  >
+                    Português
+                  </button>
+                  <button
+                    className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'en' ? 'bg-primary/20 text-primary' : ''}`}
+                    onClick={() => changeLanguage('en')}
+                  >
+                    English
+                  </button>
+                  <button
+                    className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'es' ? 'bg-primary/20 text-primary' : ''}`}
+                    onClick={() => changeLanguage('es')}
+                  >
+                    Español
+                  </button>
+                </div>
+              )}
+            </div>
             
             {/* Theme Toggle */}
             <button
@@ -94,6 +198,40 @@ const Header = () => {
           
           {/* Mobile Navigation Button */}
           <div className="flex items-center gap-4 md:hidden">
+            {/* Language Toggle for Mobile */}
+            <div className="relative">
+              <button
+                onClick={toggleLangMenu}
+                className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                aria-label="Mudar idioma"
+              >
+                <Globe size={18} />
+              </button>
+              
+              {isLangMenuOpen && (
+                <div className="absolute top-full right-0 mt-1 bg-card rounded-md shadow-lg py-2 min-w-24 z-50">
+                  <button
+                    className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'pt' ? 'bg-primary/20 text-primary' : ''}`}
+                    onClick={() => changeLanguage('pt')}
+                  >
+                    PT
+                  </button>
+                  <button
+                    className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'en' ? 'bg-primary/20 text-primary' : ''}`}
+                    onClick={() => changeLanguage('en')}
+                  >
+                    EN
+                  </button>
+                  <button
+                    className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'es' ? 'bg-primary/20 text-primary' : ''}`}
+                    onClick={() => changeLanguage('es')}
+                  >
+                    ES
+                  </button>
+                </div>
+              )}
+            </div>
+            
             {/* Theme Toggle for Mobile */}
             <button
               onClick={toggleTheme}
@@ -125,21 +263,42 @@ const Header = () => {
               className={`nav-link font-medium py-2 ${activeSection === 'home' ? 'active' : ''}`}
               onClick={(e) => scrollToSection('home', e)}
             >
-              Início
+              {currentText.home}
             </a>
             <a 
               href="#experiencia"
               className={`nav-link font-medium py-2 ${activeSection === 'experiencia' ? 'active' : ''}`}
               onClick={(e) => scrollToSection('experiencia', e)}
             >
-              Experiência
+              {currentText.experience}
+            </a>
+            <a 
+              href="#formacao"
+              className={`nav-link font-medium py-2 ${activeSection === 'formacao' ? 'active' : ''}`}
+              onClick={(e) => scrollToSection('formacao', e)}
+            >
+              {currentText.education}
+            </a>
+            <a 
+              href="#habilidades"
+              className={`nav-link font-medium py-2 ${activeSection === 'habilidades' ? 'active' : ''}`}
+              onClick={(e) => scrollToSection('habilidades', e)}
+            >
+              {currentText.skills}
+            </a>
+            <a 
+              href="#tecnologias"
+              className={`nav-link font-medium py-2 ${activeSection === 'tecnologias' ? 'active' : ''}`}
+              onClick={(e) => scrollToSection('tecnologias', e)}
+            >
+              {currentText.technologies}
             </a>
             <a 
               href="#contato"
               className={`nav-link font-medium py-2 ${activeSection === 'contato' ? 'active' : ''}`}
               onClick={(e) => scrollToSection('contato', e)}
             >
-              Contato
+              {currentText.contact}
             </a>
           </nav>
         </div>
