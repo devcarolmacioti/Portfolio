@@ -1,15 +1,26 @@
-import { useLanguage } from "../lib/language-provider";
-import { Code } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  Code,
+  FileJson,
+  Globe,
+  FileType,
+  Paintbrush,
+  PanelLeft,
+  Layout
+} from "lucide-react";
 
-// Dados de tecnologias
+// Tipo para idiomas
+type Language = "pt" | "en" | "es";
+
+// Dados de tecnologias com ícones específicos
 const technologiesData = [
-  { name: "HTML5", icon: <Code /> },
-  { name: "CSS3", icon: <Code /> },
-  { name: "JAVASCRIPT", icon: <Code /> },
-  { name: "TYPESCRIPT", icon: <Code /> },
-  { name: "REACT", icon: <Code /> },
-  { name: "ANGULAR", icon: <Code /> },
-  { name: "UI DESIGN", icon: <Code /> }
+  { name: "HTML5", icon: <FileType size={32} /> },
+  { name: "CSS3", icon: <Paintbrush size={32} /> },
+  { name: "JAVASCRIPT", icon: <FileJson size={32} /> },
+  { name: "TYPESCRIPT", icon: <Code size={32} /> },
+  { name: "REACT", icon: <PanelLeft size={32} /> },
+  { name: "ANGULAR", icon: <Globe size={32} /> },
+  { name: "UI DESIGN", icon: <Layout size={32} /> }
 ];
 
 // Textos da página em diferentes idiomas

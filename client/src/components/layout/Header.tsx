@@ -107,94 +107,98 @@ const Header = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6">
-            <a 
-              href="#home"
-              className={`nav-link font-medium ${activeSection === 'home' ? 'active' : ''}`}
-              onClick={(e) => scrollToSection('home', e)}
-            >
-              {currentText.home}
-            </a>
-            <a 
-              href="#experiencia"
-              className={`nav-link font-medium ${activeSection === 'experiencia' ? 'active' : ''}`}
-              onClick={(e) => scrollToSection('experiencia', e)}
-            >
-              {currentText.experience}
-            </a>
-            <a 
-              href="#formacao"
-              className={`nav-link font-medium ${activeSection === 'formacao' ? 'active' : ''}`}
-              onClick={(e) => scrollToSection('formacao', e)}
-            >
-              {currentText.education}
-            </a>
-            <a 
-              href="#habilidades"
-              className={`nav-link font-medium ${activeSection === 'habilidades' ? 'active' : ''}`}
-              onClick={(e) => scrollToSection('habilidades', e)}
-            >
-              {currentText.skills}
-            </a>
-            <a 
-              href="#tecnologias"
-              className={`nav-link font-medium ${activeSection === 'tecnologias' ? 'active' : ''}`}
-              onClick={(e) => scrollToSection('tecnologias', e)}
-            >
-              {currentText.technologies}
-            </a>
-            <a 
-              href="#contato"
-              className={`nav-link font-medium ${activeSection === 'contato' ? 'active' : ''}`}
-              onClick={(e) => scrollToSection('contato', e)}
-            >
-              {currentText.contact}
-            </a>
-            
-            {/* Language Selector */}
-            <div className="relative">
-              <button
-                onClick={toggleLangMenu}
-                className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors flex items-center"
-                aria-label="Mudar idioma"
+          <div className="hidden md:flex items-center">
+            <nav className="flex space-x-6 mr-6">
+              <a 
+                href="#home"
+                className={`nav-link font-medium ${activeSection === 'home' ? 'active' : ''}`}
+                onClick={(e) => scrollToSection('home', e)}
               >
-                <Globe size={18} />
-                <span className="ml-1">{language.toUpperCase()}</span>
-              </button>
-              
-              {isLangMenuOpen && (
-                <div className="absolute top-full right-0 mt-1 bg-card rounded-md shadow-lg py-2 min-w-24 z-50">
-                  <button
-                    className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'pt' ? 'bg-primary/20 text-primary' : ''}`}
-                    onClick={() => changeLanguage('pt')}
-                  >
-                    Português
-                  </button>
-                  <button
-                    className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'en' ? 'bg-primary/20 text-primary' : ''}`}
-                    onClick={() => changeLanguage('en')}
-                  >
-                    English
-                  </button>
-                  <button
-                    className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'es' ? 'bg-primary/20 text-primary' : ''}`}
-                    onClick={() => changeLanguage('es')}
-                  >
-                    Español
-                  </button>
-                </div>
-              )}
-            </div>
+                {currentText.home}
+              </a>
+              <a 
+                href="#experiencia"
+                className={`nav-link font-medium ${activeSection === 'experiencia' ? 'active' : ''}`}
+                onClick={(e) => scrollToSection('experiencia', e)}
+              >
+                {currentText.experience}
+              </a>
+              <a 
+                href="#formacao"
+                className={`nav-link font-medium ${activeSection === 'formacao' ? 'active' : ''}`}
+                onClick={(e) => scrollToSection('formacao', e)}
+              >
+                {currentText.education}
+              </a>
+              <a 
+                href="#habilidades"
+                className={`nav-link font-medium ${activeSection === 'habilidades' ? 'active' : ''}`}
+                onClick={(e) => scrollToSection('habilidades', e)}
+              >
+                {currentText.skills}
+              </a>
+              <a 
+                href="#tecnologias"
+                className={`nav-link font-medium ${activeSection === 'tecnologias' ? 'active' : ''}`}
+                onClick={(e) => scrollToSection('tecnologias', e)}
+              >
+                {currentText.technologies}
+              </a>
+              <a 
+                href="#contato"
+                className={`nav-link font-medium ${activeSection === 'contato' ? 'active' : ''}`}
+                onClick={(e) => scrollToSection('contato', e)}
+              >
+                {currentText.contact}
+              </a>
+            </nav>
             
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-              aria-label={theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro'}
-            >
-              {theme === 'dark' ? <SunIcon size={18} /> : <MoonIcon size={18} />}
-            </button>
-          </nav>
+            <div className="flex items-center space-x-2">
+              {/* Language Selector */}
+              <div className="relative">
+                <button
+                  onClick={toggleLangMenu}
+                  className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors flex items-center"
+                  aria-label="Mudar idioma"
+                >
+                  <Globe size={18} />
+                  <span className="ml-1">{language.toUpperCase()}</span>
+                </button>
+                
+                {isLangMenuOpen && (
+                  <div className="absolute top-full right-0 mt-1 bg-card rounded-md shadow-lg py-2 min-w-24 z-50">
+                    <button
+                      className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'pt' ? 'bg-primary/20 text-primary' : ''}`}
+                      onClick={() => changeLanguage('pt')}
+                    >
+                      Português
+                    </button>
+                    <button
+                      className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'en' ? 'bg-primary/20 text-primary' : ''}`}
+                      onClick={() => changeLanguage('en')}
+                    >
+                      English
+                    </button>
+                    <button
+                      className={`block w-full text-left px-4 py-2 hover:bg-primary/10 ${language === 'es' ? 'bg-primary/20 text-primary' : ''}`}
+                      onClick={() => changeLanguage('es')}
+                    >
+                      Español
+                    </button>
+                  </div>
+                )}
+              </div>
+              
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                aria-label={theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro'}
+              >
+                {theme === 'dark' ? <SunIcon size={18} /> : <MoonIcon size={18} />}
+              </button>
+            </div>
+          </div>
           
           {/* Mobile Navigation Button */}
           <div className="flex items-center gap-4 md:hidden">
