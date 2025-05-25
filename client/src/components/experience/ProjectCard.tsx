@@ -1,14 +1,17 @@
 import { ProjectCardProps } from "@/types";
+import { ExternalLinkIcon, GithubIcon } from "lucide-react";
+import { Link } from "wouter";
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ 
   title, 
   description, 
   imageUrl, 
   skills, 
-  projectUrl 
+  projectUrl,
+  id
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
+    <div className="bg-card text-card-foreground rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
       <img 
         src={imageUrl} 
         alt={title} 
@@ -27,14 +30,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </span>
           ))}
         </div>
-        <a 
-          href={projectUrl} 
-          className="text-primary font-medium flex items-center hover:underline"
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          Ver detalhes <i className="fas fa-arrow-right ml-2"></i>
-        </a>
+        <div className="flex justify-between items-center">
+          <Link href={`/projeto/${id}`}>
+            <span className="text-primary font-medium flex items-center hover:underline cursor-pointer">
+              Ver detalhes <ExternalLinkIcon size={16} className="ml-1" />
+            </span>
+          </Link>
+          
+          <a 
+            href={projectUrl} 
+            className="text-primary font-medium flex items-center hover:underline"
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="Repositório do projeto"
+          >
+            <GithubIcon size={20} />
+          </a>
+        </div>
       </div>
     </div>
   );

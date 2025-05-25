@@ -8,6 +8,7 @@ export interface TimelineItemProps {
 }
 
 export interface ProjectCardProps {
+  id: string;
   title: string;
   description: string;
   imageUrl: string;
